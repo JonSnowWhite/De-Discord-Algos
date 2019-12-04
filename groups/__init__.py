@@ -1,2 +1,2 @@
-from Groups import *
-from BabyStepGiantStep import *
+from .Groups import *
+from .BabyStepGiantStep import *

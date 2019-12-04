@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+
 import numpy
 
 from ..discreteMath.SquareAndMultiply import square_and_multiply
@@ -68,10 +69,10 @@ class MultModGroup(AbstGroup):
         return (a*b) % self.N
 
     def exp(self,element, exponent):
-        return square_and_multiply(element, self.N, exponent)
+        return sqm.square_and_multiply(element, self.N, exponent)
 
     def inv(self, element):
-        return inverse_modulo(element, self.N)
+        return eea.inverse_modulo(element, self.N)
 
     def order(self):
         return self.N

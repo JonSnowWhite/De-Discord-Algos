@@ -127,7 +127,7 @@ class InnerPPRF:
         for j in range(len(self.outerPPRF.primes)):
             if (j!=x) and not (j in self.punctures):
                 mult *= self.outerPPRF.primes[j] % self.outerPPRF.N
-        ret = square_and_multiply(self.g,self.outerPPRF.N,mult)
+        ret = sqm.square_and_multiply(self.g,self.outerPPRF.N,mult)
         hash = SHAKE256.new()
         hash.update(ret.to_bytes(int(self.outerPPRF.secpem/8),'little'))
         return hash.read(int(self.outerPPRF.secpem/8))

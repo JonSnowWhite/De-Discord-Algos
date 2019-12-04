@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
+
 import numpy
 
-from ..discreteMath.SquareAndMultiply import square_and_multiply
-from ..discreteMath.ExtendedEuklidianAlgorithm import inverse_modulo
+import ..discreteMath import *
 from subprocess import check_output
 
 class AbstGroup:
@@ -68,10 +68,10 @@ class MultModGroup(AbstGroup):
         return (a*b) % self.N
 
     def exp(self,element, exponent):
-        return square_and_multiply(element, self.N, exponent)
+        return ct.square_and_multiply(element, self.N, exponent)
 
     def inv(self, element):
-        return inverse_modulo(element, self.N)
+        return ct.inverse_modulo(element, self.N)
 
     def order(self):
         return self.N

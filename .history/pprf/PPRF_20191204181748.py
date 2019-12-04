@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
-
-from ..discreteMath.SquareAndMultiply import square_and_multiply
+import cryptotools as ct
 from Crypto.PublicKey import RSA
 from Crypto.Random import random
 from Crypto.Hash import SHAKE256
@@ -127,7 +126,7 @@ class InnerPPRF:
         for j in range(len(self.outerPPRF.primes)):
             if (j!=x) and not (j in self.punctures):
                 mult *= self.outerPPRF.primes[j] % self.outerPPRF.N
-        ret = square_and_multiply(self.g,self.outerPPRF.N,mult)
+        ret = ct.square_and_multiply(self.g,self.outerPPRF.N,mult)
         hash = SHAKE256.new()
         hash.update(ret.to_bytes(int(self.outerPPRF.secpem/8),'little'))
         return hash.read(int(self.outerPPRF.secpem/8))
@@ -148,7 +147,7 @@ class InnerPPRF:
         if x<0 or x>231:
             raise ValueError
 
-        self.g = sqm.square_and_multiply(self.g,self.outerPPRF.N,self.outerPPRF.primes[x])
+        self.g = ct.square_and_multiply(self.g,self.outerPPRF.N,self.outerPPRF.primes[x])
         self.punctures.append(x)
         return
 
