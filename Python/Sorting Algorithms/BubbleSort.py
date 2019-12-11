@@ -3,7 +3,7 @@ def BubbleSort(arr):
      and swapping their position if the former is greater than the latter.
 
     Arguments:
-            numbers: List of numbers to sort
+            arr: List of numbers to sort
     """
     n = len(arr)
     for i in range(n):
