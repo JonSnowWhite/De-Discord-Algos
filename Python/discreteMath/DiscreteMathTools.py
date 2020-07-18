@@ -49,3 +49,39 @@ def allPerms(values):
                 values.append(setvalues.pop(len(setvalues)-1))
 
     yield from innerAllPerms([],values)
+
+def all_sub_tuples_all_length_with_repetition(values):
+    """
+    A generator that yields all sub-tuples of all lengths including repetitions of the values in values. 
+
+    Params:
+        values: Must be an iterable object. (Iterable)
+
+    Yields:
+        The next sub-tuple with described properties.
+    
+    Raises:
+        ValueError: Should values not be iterable
+    """
+    try:
+        values = iter(values)
+    except:
+        raise ValueError("Parameter values must be Iterable")
+
+    values = list(values)
+
+    # setValues keeps track of which values we added
+    # in each recursive call we add one element to the next index of setValues
+    def innerAllPerms(setValues,values):
+        for i in range(len(values)):
+            # assign each possible number to the index
+            setValues.append(values[i])
+            # yield intermediate result
+            yield setValues[:]
+            # unless we hit max length set all other indices and yield the results
+            if not len(setValues)==len(values):
+                yield from innerAllPerms(setValues,values)
+            # remove set number so we can set the next
+            setValues.pop(len(setValues)-1)
+
+    yield from innerAllPerms([],values)
