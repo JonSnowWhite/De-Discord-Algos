@@ -8,7 +8,7 @@ def allPerms(values):
     A generator that yields all permutations of the values in values. 
 
     Params:
-        valus: Must be an iterable object. All permutations of its content are yielded (Iterable)
+        values: Must be an iterable object. All permutations of its content are yielded (Iterable)
 
     Yields:
         The next permutation of the values in values
